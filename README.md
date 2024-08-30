@@ -17,6 +17,7 @@ This is a Spring Boot demo project that implements API documentation using OpenA
     - [Define the OpenAPI specification](#define-the-openapi-specification)
     - [Generate the code](#generate-the-code)
   - [Use the generated code in the project](#use-the-generated-code-in-the-project)
+    - [Accessing the generated resources](#accessing-the-generated-resources)
     - [Implement the controllers](#implement-the-controllers)
     - [Accessing the DTOs](#accessing-the-dtos)
 
@@ -133,6 +134,36 @@ These locations were defined in the `openapi-generator-maven-plugin` plugin conf
 ## Use the generated code in the project
 
 This section provides a brief explanation of how to use the generated code in the project.
+
+### Accessing the generated resources
+
+In order to access the generated resources, the `impl` module's [pom.xml](impl%2Fpom.xml) file should be updated to include the `spec` module as a dependency.
+
+First, we need to configure the dependency management in the main [pom.xml](pom.xml) file:
+
+```xml
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>spec</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+Then, we need to add the `spec` module as a dependency in the `impl` module's [pom.xml](impl%2Fpom.xml) file:
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.example</groupId>
+    <artifactId>spec</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </dependency>
+</dependencies>
+```
 
 ### Implement the controllers
 
