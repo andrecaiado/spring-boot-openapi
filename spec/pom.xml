@@ -82,10 +82,12 @@
                             <typeMappings>
                                 <typeMapping>Timestamp=Instant</typeMapping>
                                 <typeMapping>Double=java.math.BigDecimal</typeMapping>
+                                <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>Instant=java.time.Instant</importMapping>
                                 <importMapping>BigDecimal=java.math.BigDecimal</importMapping>
+                                <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
                             </importMappings>
                         </configuration>
                     </execution>
