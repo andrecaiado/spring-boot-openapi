@@ -167,4 +167,55 @@ Then, we need to add the `spec` module as a dependency in the `impl` module's [p
 
 ### Implement the controllers
 
+In the `impl` module, create a new package to store the controllers. The controllers should then implement the interfaces that were generated based on the OpenAPI specification and that are available in the `generated-sources` directory.
+
+**Note:**
+The above-mentioned interfaces were made available to the `impl` module as it was explained in the previous section.
+
+**Example for the EmployeeController:**
+
+The `EmployeeApi` interface contains the methods that should be implemented by the controller. The `EmployeeController` class implements the `EmployeeApi` interface and provides the implementation for the methods.
+
+The example below shows the EmployeeController class after specifying that it implements the EmployeeApi interface and overriding the methods. All that is left to do is to implement the methods.
+
+```java
+@RestController
+@RequestMapping("/api/v1/employees")
+public class EmployeeController implements EmployeeApi {
+
+  private final EmployeeService employeeService;
+
+  public EmployeeController(EmployeeService employeeService) {
+    this.employeeService = employeeService;
+  }
+
+  @Override
+  public ResponseEntity<String> deleteEmployeeById(Integer id) {
+    return null;
+  }
+
+  @Override
+  public ResponseEntity<List<EmployeeDto>> getAllEmployees(Pageable pageable) {
+    return null;
+  }
+
+  @Override
+  public ResponseEntity<EmployeeDto> getEmployeeById(Integer id) {
+    return null;
+  }
+
+  @Override
+  public ResponseEntity<EmployeeDto> saveEmployee(CreateEmployeeDto createEmployeeDto) {
+    return null;
+  }
+
+  @Override
+  public ResponseEntity<EmployeeDto> updateEmployee(Integer id, CreateEmployeeDto createEmployeeDto) {
+    return null;
+  }
+}
+```
+
 ### Accessing the DTOs
+
+The DTOs are available in the `generated-sources` directory. To use the DTOs, import the classes in the controller classes.
