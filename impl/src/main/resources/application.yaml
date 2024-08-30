@@ -8,6 +8,9 @@ spring:
       schemas: employee
       baselineOnMigrate: true
       enabled: true
+  docker:
+    compose:
+      file: classpath:docker-compose.yaml
 
 springdoc:
   api-docs:

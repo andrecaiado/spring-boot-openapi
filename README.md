@@ -53,26 +53,41 @@ This section provides a step-by-step guide on how to run the project.
 git clone git@github.com:andrecaiado/spring-boot-openapi.git
 ```
 
-2. Navigate into the project directory:
-
-```
-cd your-repository-name
-```
-
-3. Install the dependencies and generate the code from the OpenAPI specification by executing the following command:
+2. Navigate into the `spec` directory:
 
 ```shell
-./mvnw clean install
+cd spring-boot-openapi/spec
 ```
 
-4. Run the application by executing the following command:
+3. Generate the code from the OpenAPI specification by executing the following command:
+
+```shell
+../mvnw clean compile
+```
+
+4. Navigate to the `impl` directory:
+
+```shell
+cd ../impl
+```
+
+5. Install the project dependencies by executing the following command:
+
+```shell
+../mvnw clean install
+```
+
+6. Run the application by executing the following command:
 
 ```shell 
-./mvnw spring-boot:run
+../mvnw spring-boot:run
 ```
-## Try it out with the postman collection
 
-The Postman collection is available here: [spring-boot-template-rest-api.postman_collection.json](spring-boot-template-rest-api.postman_collection.json)
+## Try it out the API
+
+The API can be tested using the Swagger UI or Postman.
+ - The API documentation is available at [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
+- The Postman collection is available here: [spring-boot-template-rest-api.postman_collection.json](spring-boot-template-rest-api.postman_collection.json)
 
 # Implementation
 

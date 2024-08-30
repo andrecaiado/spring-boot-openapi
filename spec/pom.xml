@@ -86,10 +86,14 @@
                             <typeMappings>
                                 <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
                                 <typeMapping>Pageable=org.springframework.data.domain.Pageable</typeMapping>
+                                <typeMapping>Timestamp=Instant</typeMapping>
+                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
                                 <importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
+                                <importMapping>Instant=java.time.Instant</importMapping>
+                                <importMapping>BigDecimal=java.math.BigDecimal</importMapping>
                             </importMappings>
                         </configuration>
                     </execution>
