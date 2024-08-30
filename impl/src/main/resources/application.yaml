@@ -8,3 +8,7 @@ spring:
       schemas: employee
       baselineOnMigrate: true
       enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
