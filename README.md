@@ -35,7 +35,7 @@ This project's main features are:
 
 This readme file will focus on the OpenAPI documentation and API-first implementation. For more details about the other features of this project, please refer to the [Spring Boot Template project](https://github.com/andrecaiado/spring-boot-template) that was used as a base for this project.
 
-# Requirements (UPDATE)
+# Requirements
 
 - Java 17
 - Docker
