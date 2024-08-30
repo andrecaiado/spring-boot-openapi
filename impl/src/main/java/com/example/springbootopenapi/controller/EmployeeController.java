@@ -4,7 +4,6 @@ import com.example.springbootopenapi.dto.CreateEmployeeDto;
 import com.example.springbootopenapi.dto.EmployeeDto;
 import com.example.springbootopenapi.service.EmployeeService;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/employees")
-public class EmployeeController {
+public class EmployeeController implements EmployeeApi {
 
     private final EmployeeService employeeService;
 
@@ -21,30 +19,29 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping()
-    public ResponseEntity<List<EmployeeDto>> getAllEmployees(@PageableDefault(page = 0, size = 10) Pageable pageable){
-        return ResponseEntity.ok().body(employeeService.getAllEmployees(pageable));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
-    }
-
-    @PostMapping()
-    public ResponseEntity<EmployeeDto> saveEmployee(@RequestBody CreateEmployeeDto employee) {
-        return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Integer id, @RequestBody CreateEmployeeDto employee) {
-        return ResponseEntity.ok().body(employeeService.updateEmployee(id, employee));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployeeById(@PathVariable Integer id) {
+    @Override
+    public ResponseEntity<String> deleteEmployeeById(Integer id) {
         employeeService.deleteEmployeeById(id);
         return ResponseEntity.ok().body("Employee deleted successfully");
     }
 
+    @Override
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(Pageable pageable) {
+        return ResponseEntity.ok().body(employeeService.getAllEmployees(pageable));
+    }
+
+    @Override
+    public ResponseEntity<EmployeeDto> getEmployeeById(Integer id) {
+        return ResponseEntity.ok().body(employeeService.getEmployeeById(id));
+    }
+
+    @Override
+    public ResponseEntity<EmployeeDto> saveEmployee(CreateEmployeeDto createEmployeeDto) {
+        return new ResponseEntity<>(employeeService.saveEmployee(createEmployeeDto), HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<EmployeeDto> updateEmployee(Integer id, CreateEmployeeDto createEmployeeDto) {
+        return ResponseEntity.ok().body(employeeService.updateEmployee(id, createEmployeeDto));
+    }
 }

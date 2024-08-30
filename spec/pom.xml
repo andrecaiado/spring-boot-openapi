@@ -41,6 +41,10 @@
             <artifactId>jackson-databind-nullable</artifactId>
             <version>0.2.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -83,11 +87,13 @@
                                 <typeMapping>Timestamp=Instant</typeMapping>
                                 <typeMapping>Double=java.math.BigDecimal</typeMapping>
                                 <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                                <typeMapping>Pageable=org.springframework.data.domain.Pageable</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>Instant=java.time.Instant</importMapping>
                                 <importMapping>BigDecimal=java.math.BigDecimal</importMapping>
                                 <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                                <importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
                             </importMappings>
                         </configuration>
                     </execution>

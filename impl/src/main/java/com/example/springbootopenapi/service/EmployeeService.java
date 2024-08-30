@@ -29,7 +29,20 @@ public class EmployeeService {
     }
 
     private static EmployeeDto toEmployeeDto(Employee employee) {
-        return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getAge(), employee.getDesignation(), employee.getPhoneNumber(), employee.getJoinedOn(), employee.getAddress(), employee.getDateOfBirth(), employee.getCreatedAt(), employee.getUpdatedAt());
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setId(employee.getId());
+        employeeDto.setFirstName(employee.getFirstName());
+        employeeDto.setLastName(employee.getLastName());
+        employeeDto.setAge(employee.getAge());
+        employeeDto.setDesignation(employee.getDesignation());
+        employeeDto.setPhoneNumber(employee.getPhoneNumber());
+        employeeDto.setJoinedOn(employee.getJoinedOn());
+        employeeDto.setAddress(employee.getAddress());
+        employeeDto.setDateOfBirth(employee.getDateOfBirth());
+        employeeDto.setCreatedAt(employee.getCreatedAt());
+        employeeDto.setUpdatedAt(employee.getUpdatedAt());
+
+        return employeeDto;
     }
 
     public EmployeeDto getEmployeeById(Integer id){
@@ -51,14 +64,14 @@ public class EmployeeService {
 
     public EmployeeDto saveEmployee (CreateEmployeeDto employeeDto){
         Employee employee = new Employee();
-        employee.setFirstName(employeeDto.firstName());
-        employee.setLastName(employeeDto.lastName());
-        employee.setAge(employeeDto.age());
-        employee.setDesignation(employeeDto.designation());
-        employee.setPhoneNumber(employeeDto.phoneNumber());
-        employee.setJoinedOn(employeeDto.joinedOn());
-        employee.setAddress(employeeDto.address());
-        employee.setDateOfBirth(employeeDto.dateOfBirth());
+        employee.setFirstName(employeeDto.getFirstName());
+        employee.setLastName(employeeDto.getLastName());
+        employee.setAge(employeeDto.getAge());
+        employee.setDesignation(employeeDto.getDesignation());
+        employee.setPhoneNumber(employeeDto.getPhoneNumber());
+        employee.setJoinedOn(employeeDto.getJoinedOn());
+        employee.setAddress(employeeDto.getAddress());
+        employee.setDateOfBirth(employeeDto.getDateOfBirth());
         employee.setCreatedAt(LocalDateTime.now());
         employee.setUpdatedAt(LocalDateTime.now());
 
@@ -74,14 +87,14 @@ public class EmployeeService {
             throw new EmployeeNotFoundException("Employee not found");
         }
 
-        employeeById.setFirstName(employeeDto.firstName());
-        employeeById.setLastName(employeeDto.lastName());
-        employeeById.setAge(employeeDto.age());
-        employeeById.setDesignation(employeeDto.designation());
-        employeeById.setPhoneNumber(employeeDto.phoneNumber());
-        employeeById.setJoinedOn(employeeDto.joinedOn());
-        employeeById.setAddress(employeeDto.address());
-        employeeById.setDateOfBirth(employeeDto.dateOfBirth());
+        employeeById.setFirstName(employeeDto.getFirstName());
+        employeeById.setLastName(employeeDto.getLastName());
+        employeeById.setAge(employeeDto.getAge());
+        employeeById.setDesignation(employeeDto.getDesignation());
+        employeeById.setPhoneNumber(employeeDto.getPhoneNumber());
+        employeeById.setJoinedOn(employeeDto.getJoinedOn());
+        employeeById.setAddress(employeeDto.getAddress());
+        employeeById.setDateOfBirth(employeeDto.getDateOfBirth());
         employeeById.setUpdatedAt(LocalDateTime.now());
 
         employeeRepository.save(employeeById);
