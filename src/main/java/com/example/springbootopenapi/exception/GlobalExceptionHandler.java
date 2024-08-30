@@ -1,4 +1,4 @@
-package com.example.springboottemplate.exception;
+package com.example.springbootopenapi.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

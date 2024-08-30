@@ -1,4 +1,4 @@
-package com.example.springboottemplate.exception;
+package com.example.springbootopenapi.exception;
 
 import lombok.Data;
 

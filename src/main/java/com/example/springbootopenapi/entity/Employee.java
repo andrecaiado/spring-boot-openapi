@@ -1,4 +1,4 @@
-package com.example.springboottemplate.entity;
+package com.example.springbootopenapi.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

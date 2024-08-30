@@ -1,13 +1,13 @@
-package com.example.springboottemplate.service;
+package com.example.springbootopenapi.service;
 
-import com.example.springboottemplate.dto.CreateEmployeeDto;
-import com.example.springboottemplate.dto.EmployeeDto;
-import com.example.springboottemplate.entity.Employee;
-import com.example.springboottemplate.exception.EmployeeNotFoundException;
+import com.example.springbootopenapi.dto.CreateEmployeeDto;
+import com.example.springbootopenapi.dto.EmployeeDto;
+import com.example.springbootopenapi.entity.Employee;
+import com.example.springbootopenapi.exception.EmployeeNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.example.springboottemplate.repository.EmployeeRepository;
+import com.example.springbootopenapi.repository.EmployeeRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
