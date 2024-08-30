@@ -84,14 +84,10 @@
                                 <modelPackage>com.example.springbootopenapi.dto</modelPackage>
                             </configOptions>
                             <typeMappings>
-                                <typeMapping>Timestamp=Instant</typeMapping>
-                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
                                 <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
                                 <typeMapping>Pageable=org.springframework.data.domain.Pageable</typeMapping>
                             </typeMappings>
                             <importMappings>
-                                <importMapping>Instant=java.time.Instant</importMapping>
-                                <importMapping>BigDecimal=java.math.BigDecimal</importMapping>
                                 <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
                                 <importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
                             </importMappings>
