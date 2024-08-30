@@ -11,10 +11,13 @@ This is a Spring Boot demo project that implements API documentation using OpenA
 - [Implementation](#implementation)
   - [Create the project structure](#create-the-project-structure)
     - [Create the modules](#create-the-modules)
-    - [Update the `impl` module's `pom.xml` file](#update-the-impl-modules-pomxml-file)
+    - [Update the modules](#update-the-modules)
   - [Generate the code](#generate-the-code)
     - [Configure the code generator plugin](#configure-the-code-generator-plugin)
     - [Define the OpenAPI specification](#define-the-openapi-specification)
+    - [Type mappings and import mappings](#type-mappings-and-import-mappings)
+      - [The OffsetDateTime mapping](#the-offsetdatetime-mapping)
+      - [The Pageable mapping](#the-pageable-mapping)
     - [Generate the code](#generate-the-code)
   - [Use the generated code in the project](#use-the-generated-code-in-the-project)
     - [Accessing the generated resources](#accessing-the-generated-resources)
@@ -67,6 +70,9 @@ cd your-repository-name
 ```shell 
 ./mvnw spring-boot:run
 ```
+## Try it out with the postman collection
+
+The Postman collection is available here: [spring-boot-template-rest-api.postman_collection.json](spring-boot-template-rest-api.postman_collection.json)
 
 # Implementation
 
@@ -91,7 +97,7 @@ After creating the `impl` module, delete this module's `src` folder and move the
 
 After creating the `spec` module, one can delete this module's `java` folder.
 
-### Update the `impl` module's `pom.xml` file
+### Update the modules
 
 To update the `pom.xml` file, move the dependencies and plugins from the project's root `pom.xml` file to the `impl` module's `pom.xml` file.
 
@@ -114,6 +120,43 @@ The OpenAPI specification file should contain the API's endpoints, request and r
 The OpenAPI specification file can be created manually or using a tool like [Swagger Editor](https://editor.swagger.io/).
 
 Please refer to the [OpenAPI Specification documentation](https://swagger.io/docs/specification/about/) for more details on how to define the API's endpoints and models.
+
+### Type mappings and import mappings
+
+Type mappings and import mappings allow for types bound to the OpenAPI Specification's types to be remapped to a user's desired types.
+
+- The `typeMappings` property is used to defines the user's target type for a given OpenAPI Specification type.
+- The `importMappings` informs the template of the type to be imported.
+
+The `typeMappings` and `importMappings` properties are defined in the `configuration` section of the plugin configuration. In this project, the `typeMappings` and `importMappings` properties are defined in the `spec`module [pom.xml](spec%2Fpom.xml) file as shown below:
+
+```xml
+<configuration>
+    <typeMappings>
+        <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+        <typeMapping>Pageable=org.springframework.data.domain.Pageable</typeMapping>
+    </typeMappings>
+    <importMappings>
+        <importMapping>LocalDateTime=java.time.LocalDateTime</importMapping>
+        <importMapping>Pageable=org.springframework.data.domain.Pageable</importMapping>
+    </importMappings>
+</configuration>
+```
+The `typeMappings` and `importMappings` properties are optional. If they are not defined, the default mappings will be used.
+
+#### The OffsetDateTime mapping
+
+In this project, we are mapping the OffsetDateTime type to LocalDateTime.
+This mapping is necessary because the OpenAPI specification uses OffsetDateTime for date-time fields however, the project uses LocalDateTime.
+
+We also need to import the LocalDateTime class in the generated code, so we need to define the import mapping.
+
+#### The Pageable mapping
+
+In this project, we are mapping the Pageable type to org.springframework.data.domain.Pageable.
+Because there is no Pageable type in the OpenAPI specification, we defined a custom type in the OpenAPI specification and so, we need to map it to the Spring Pageable type.
+
+We also need to import the Pageable class in the generated code, so we need to define the import mapping.
 
 ### Generate the code
 
